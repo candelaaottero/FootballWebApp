@@ -1,0 +1,14 @@
+[Header]
+Mask=*.src;*.vw;*.sl;*.dg;*.rv;*.bp;*.pkg;*.wo;*.dd;*.inc;*.tpl;*.dfo;*.asp;*.asa;*.html;*.css;*.js
+Active=0
+SubDirectories=1
+WholeWordOnly=0
+RegularExpression=0
+SearchWhere=0
+Location=C:\DataFlex Projects\FootballWebApp\IdeSrc\cande_FindInFiles.dsk
+[C:\DataFlex Projects\FootballWebApp\AppSrc]
+IsEnabled=1
+[C:\DataFlex Projects\FootballWebApp\DDSrc]
+IsEnabled=1
+[C:\DataFlex Projects\FootballWebApp\AppHtml]
+IsEnabled=1
