@@ -1,0 +1,13 @@
+Programs/
+*.cch
+*.k1
+*.k2
+*.k3
+*.dbg
+*.dep
+*.prn
+Data/webappsession.*
+Data/webappserverprops.*
+Data/WebAppSession.dat
+Data/WebAppServerProps.dat
+IdeSrc/Workspace.loc
