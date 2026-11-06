@@ -107,6 +107,17 @@ Object oWebApp is a cWebApp
                                 Send NavigatePath
                         End_Procedure
                     End_Object
+                    
+                    Object oZoomEquipoItem is a cWebMenuItem
+                        Set psCaption to "ZoomEquipo"
+
+                        WebRegisterPath ntNavigateBegin oZoomEquipo
+
+                        Procedure OnClick
+                            Forward Send OnClick
+                                Send NavigatePath
+                        End_Procedure
+                    End_Object
                 End_Object
 
                 Object oSignOut_itm is a cWebMenuItem
