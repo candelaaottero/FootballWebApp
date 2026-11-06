@@ -11,6 +11,8 @@ Use cWebForm.pkg
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 
+Register_Object oSelectEquipo
+
 Object oZoomEquipo is a cWebView
     Set piColumnCount to 12
     Set psCaption to "ZoomEquipo"
@@ -42,6 +44,37 @@ Object oZoomEquipo is a cWebView
             Set peLabelPosition to lpTop
             Set psLabel to "Nombre"
         End_Object 
+
+        Object oliga_Nombre is a cWebForm
+            Entry_Item liga.Nombre
+            Set piColumnSpan to 0
+            Set piColumnIndex to 0
+            Set psLabel to "Liga"
+            Set peLabelPosition to lpTop
+            Set pbPromptButton to True
+            WebRegisterPath ntNavigateForward oSelectLiga
+            Procedure OnPrompt
+                Send NavigatePath
+            End_Procedure
+        End_Object
+        
+        Object oEntrenadorBtn is a cWebButton
+            Set psCaption to "Ver entrenador"
+            Set piColumnSpan to 6
+            WebRegisterPath ntNavigateForward oSelectEntrenador
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+        End_Object
+        
+        Object oListaBtn is a cWebButton
+            Set psCaption to "Buscar equipo"
+            Set piColumnSpan to 6
+            WebRegisterPath ntNavigateForward oSelectEquipo
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+        End_Object
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup
@@ -124,6 +157,7 @@ Object oZoomEquipo is a cWebView
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        WebSet pbRender of oListaBtn to False
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a propbably a main file Select to Zoom.
@@ -138,7 +172,7 @@ Object oZoomEquipo is a cWebView
                 Case Break
 
             Case Else // must be nfUndefined
-
+                WebSet pbRender of oListaBtn to True
         Case End
 
         Send SetActionButtons
