@@ -63,6 +63,15 @@ Object oZoomJugador is a cWebView
             Set peLabelPosition to lpTop
             Set psLabel to "Nacionalidad"
         End_Object 
+        
+        Object oPosicionBtn is a cWebButton
+            Set psCaption to "Posiciones"
+            Set piColumnSpan to 6
+            WebRegisterPath ntNavigateForward oSelectPosicion
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+        End_Object
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup
