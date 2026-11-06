@@ -11,6 +11,8 @@ Use cWebForm.pkg
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 
+Register_Object oSelectEquipo
+
 Object oZoomEquipo is a cWebView
     Set piColumnCount to 12
     Set psCaption to "ZoomEquipo"
@@ -60,6 +62,15 @@ Object oZoomEquipo is a cWebView
             Set psCaption to "Ver entrenador"
             Set piColumnSpan to 6
             WebRegisterPath ntNavigateForward oSelectEntrenador
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+        End_Object
+        
+        Object oListaBtn is a cWebButton
+            Set psCaption to "Buscar equipo"
+            Set piColumnSpan to 6
+            WebRegisterPath ntNavigateForward oSelectEquipo
             Procedure OnClick
                 Send NavigatePath
             End_Procedure
@@ -146,6 +157,7 @@ Object oZoomEquipo is a cWebView
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        WebSet pbRender of oListaBtn to False
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a propbably a main file Select to Zoom.
@@ -160,7 +172,7 @@ Object oZoomEquipo is a cWebView
                 Case Break
 
             Case Else // must be nfUndefined
-
+                WebSet pbRender of oListaBtn to True
         Case End
 
         Send SetActionButtons
