@@ -9,6 +9,7 @@ Use cWebMenuItem.pkg
 Use cWebForm.pkg
 
 Use cligaDataDictionary.dd
+Use cequipoDataDictionary.dd
 
 Object oZoomLiga is a cWebView
     Set piColumnCount to 12
@@ -78,6 +79,11 @@ Object oZoomLiga is a cWebView
          Object oEquiposList is a cWebList
             Set Server to oequipo_DD
             Set piColumnSpan to 12
+            Set piColumnIndex to  0
+            Set pbFillHeight to False
+            Set piHeight to 250
+            Set pbShowHeader to False
+            Set piSortColumn to 0
             Object oequipoNombre is a cWebColumn
                 Entry_Item equipo.Nombre
                 Set psCaption to "Equipo"
