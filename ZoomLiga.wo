@@ -7,6 +7,8 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use cWebList.pkg
+Use cWebColumn.pkg
 
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
@@ -25,6 +27,7 @@ Object oZoomLiga is a cWebView
     
     Object oequipo_DD is a cequipoDataDictionary
             Set DDO_Server to oliga_DD
+            Set Constrain_File to liga.File_Number
     End_Object
 
     Set Main_DD To oliga_DD
@@ -32,12 +35,12 @@ Object oZoomLiga is a cWebView
 
 
     Object oWebMainPanel is a cWebPanel
-        Set piColumnCount to 12
+        Set piColumnCount to 6
         WebSetResponsive piColumnCount rmMobile to 4
 
         Object oligaNombre is a cWebForm
             Entry_Item liga.Nombre
-            Set piColumnSpan to 12
+            Set piColumnSpan to 6
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "Nombre"
@@ -45,15 +48,15 @@ Object oZoomLiga is a cWebView
 
         Object oligaPais is a cWebForm
             Entry_Item liga.Pais
-            Set piColumnSpan to 8
-            Set piColumnIndex to 0
+            Set piColumnSpan to 6
+            Set piColumnIndex to 6
             Set peLabelPosition to lpTop
             Set psLabel to "Pais"
         End_Object 
 
         Object oligaEquipos is a cWebForm
             Entry_Item liga.Equipos
-            Set piColumnSpan to 2
+            Set piColumnSpan to 6
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "NumEquipos"
@@ -61,35 +64,11 @@ Object oZoomLiga is a cWebView
 
         Object oligaEquiposMax is a cWebForm
             Entry_Item liga.EquiposMax
-            Set piColumnSpan to 2
-            Set piColumnIndex to 0
+            Set piColumnSpan to 6
+            Set piColumnIndex to 6
             Set peLabelPosition to lpTop
             Set psLabel to "EquiposMax"
         End_Object 
-        
-         Object oEquiposBtn is a cWebButton
-            Set psCaption to "Ver equipos"
-            Set piColumnSpan to 6
-            WebRegisterPath ntNavigateForward oSelectEquipo
-            Procedure OnClick
-                Send NavigatePath
-            End_Procedure
-         End_Object
-         
-         Object oEquiposList is a cWebList
-            Set Server to oequipo_DD
-            Set piColumnSpan to 12
-            Set piColumnIndex to  0
-            Set pbFillHeight to False
-            Set piHeight to 250
-            Set pbShowHeader to False
-            Set piSortColumn to 0
-            Object oequipoNombre is a cWebColumn
-                Entry_Item equipo.Nombre
-                Set psCaption to "Equipo"
-                Set piWidth to 600
-            End_Object
-         End_Object
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup
@@ -192,5 +171,36 @@ Object oZoomLiga is a cWebView
         Send SetActionButtons
 
     End_Procedure
+
+    Object oWebPanel1 is a cWebPanel
+    //    Set peRegion to prRight //prLeft //prCenter// prTop // prBottom
+        Set piColumnCount to 12
+        Set peRegion to prRight
+        Set piWidth to 418
+
+        Object oEquiposList is a cWebList
+           Set Server to oequipo_DD
+           Set piColumnSpan to 12
+           Set piColumnIndex to  0
+           Set pbFillHeight to False
+           Set piHeight to 250
+           Set pbShowHeader to False
+           Set piSortColumn to 0
+           Object oequipoNombre is a cWebColumn
+               Entry_Item equipo.Nombre
+               Set psCaption to "Equipo"
+               Set piWidth to 600
+           End_Object
+        End_Object
+
+        Object oEquiposBtn is a cWebButton
+           Set psCaption to "Ver equipos"
+           Set piColumnSpan to 12
+           WebRegisterPath ntNavigateForward oSelectEquipo
+           Procedure OnClick
+               Send NavigatePath
+           End_Procedure
+        End_Object
+    End_Object
 
 End_Object 
