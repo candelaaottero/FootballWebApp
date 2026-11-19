@@ -24,5 +24,21 @@ Class centrenadorDataDictionary is a DataDictionary
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
 
     End_Procedure
+    
+    Procedure DespedirEntrenador
+        Handle hoSQL hDbc hStmt
+        Integer iId
+        Get Field_Current_Value Field entrenador.ID to iId
+        
+        Get Create U_cSQLHandleManager to hoSQL
+        Get SQLFileConnect of hoSQL entrenador.File_Number to hDbc
+        Get SQLOpen of hDbc to hStmt
+        Send SQLExecDirect of hStmt ("UPDATE entrenador SET EquipoID = NULL WHERE ID =" * String(iId))
+        Send SQLClose of hStmt
+        Send SQLDisconnect of hDbc
+        Send Destroy of hoSQL
+        
+        Send Refind_Records
+    End_Procedure
 
 End_Class
