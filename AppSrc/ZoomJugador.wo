@@ -11,6 +11,8 @@ Use cWebForm.pkg
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 Use cjugadorDataDictionary.dd
+Use cWebGroup.pkg
+Use cWebSpacer.pkg
 
 Object oZoomJugador is a cWebView
     Set piColumnCount to 12
@@ -40,33 +42,44 @@ Object oZoomJugador is a cWebView
         Set piColumnCount to 12
         WebSetResponsive piColumnCount rmMobile to 4
 
-        Object ojugadorNombre is a cWebForm
-            Entry_Item jugador.Nombre
-            Set piColumnSpan to 10
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "Nombre"
-        End_Object 
+        Object oWebGroup1 is a cWebGroup
+            Set psCaption to "Datos Jugador"
+            Set piColumnCount to 10
+            Set piColumnSpan to 12
 
-        Object ojugadorApellido is a cWebForm
-            Entry_Item jugador.Apellido
-            Set piColumnSpan to 10
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "Apellido"
-        End_Object 
+            Object ojugadorNombre is a cWebForm
+                Entry_Item jugador.Nombre
+                Set piColumnSpan to 10
+                Set piColumnIndex to 0
+                Set peLabelPosition to lpTop
+                Set psLabel to "Nombre"
+            End_Object 
 
-        Object ojugadorNacionalidad is a cWebForm
-            Entry_Item jugador.Nacionalidad
-            Set piColumnSpan to 8
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "Nacionalidad"
-        End_Object 
-        
+            Object ojugadorApellido is a cWebForm
+                Entry_Item jugador.Apellido
+                Set piColumnSpan to 10
+                Set piColumnIndex to 0
+                Set peLabelPosition to lpTop
+                Set psLabel to "Apellido"
+            End_Object 
+
+            Object ojugadorNacionalidad is a cWebForm
+                Entry_Item jugador.Nacionalidad
+                Set piColumnSpan to 10
+                Set piColumnIndex to 0
+                Set peLabelPosition to lpTop
+                Set psLabel to "Nacionalidad"
+            End_Object 
+        End_Object
+
+        Object oWebSpacer1 is a cWebSpacer
+            Set piColumnSpan to 12
+        End_Object
+
         Object oPosicionBtn is a cWebButton
             Set psCaption to "Posiciones"
-            Set piColumnSpan to 6
+            Set piColumnSpan to 4
+            Set piColumnIndex to 4
             WebRegisterPath ntNavigateForward oSelectPosicion
             Procedure OnClick
                 Send NavigatePath

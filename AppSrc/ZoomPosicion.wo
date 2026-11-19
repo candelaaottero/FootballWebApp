@@ -9,6 +9,7 @@ Use cWebMenuItem.pkg
 Use cWebForm.pkg
 
 Use cposicionDataDictionary.dd
+Use cWebGroup.pkg
 
 Object oZoomPosicion is a cWebView
     Set piColumnCount to 12
@@ -28,15 +29,20 @@ Object oZoomPosicion is a cWebView
 
     Object oWebMainPanel is a cWebPanel
         Set piColumnCount to 12
-        WebSetResponsive piColumnCount rmMobile to 4
 
-        Object oposicionNombre is a cWebForm
-            Entry_Item posicion.Nombre
-            Set piColumnSpan to 8
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "Nombre"
-        End_Object 
+        Object oWebGroup1 is a cWebGroup
+            Set psCaption to "Datos Posiciones"
+            Set piColumnCount to 12   
+
+            Object oposicionNombre is a cWebForm
+                Entry_Item posicion.Nombre
+                Set piColumnSpan to 12
+                Set piColumnIndex to 0
+                Set peLabelPosition to lpTop
+                Set psLabel to "Nombre"
+            End_Object 
+        End_Object
+        WebSetResponsive piColumnCount rmMobile to 4
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup
