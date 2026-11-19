@@ -105,6 +105,22 @@ Object oZoomEntrenador is a cWebView
                 End_Procedure
             End_Object
         End_Object
+
+        Object oWebSpacer1 is a cWebSpacer
+            Set piColumnSpan to 12
+        End_Object
+
+        Object oDespedirButton is a cWebButton
+            Set piColumnSpan to 8
+            Set psCaption to "Despedir Entrenador"
+            Set piColumnIndex to 2
+        
+            Procedure OnClick
+                Handle hoDD
+                Get Server to hoDD
+                Send DespedirEntrenador of hoDD
+            End_Procedure
+        End_Object
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup
