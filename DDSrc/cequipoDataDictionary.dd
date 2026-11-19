@@ -10,6 +10,12 @@ Class cequipoDataDictionary is a DataDictionary
     Procedure Construct_Object
         Forward Send Construct_Object
         Set Main_File to equipo.File_Number
+        
+        Set Key_Field_State Field equipo.ID to True
+        Set Field_Option Field equipo.ID DD_REQUIRED to True
+        Set Field_Option Field equipo.Nombre DD_DISPLAYONLY to True
+        Set Field_Option Field equipo.Nombre DD_REQUIRED to True
+        Set Field_Option Field equipo.LigaID DD_REQUIRED to True
 
         Set Add_Server_File to liga.File_Number
 
