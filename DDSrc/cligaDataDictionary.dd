@@ -19,7 +19,7 @@ Class cligaDataDictionary is a DataDictionary
         Set Field_Option Field liga.ID DD_REQUIRED to True
         Set Key_Field_State Field liga.ID to True
 
-        Set Field_Option Field liga.Nombre DD_DISPLAYONLY to True
+        Set Field_Option Field liga.Nombre DD_DISPLAYONLY to False
         Set Field_Option Field liga.Nombre DD_REQUIRED to True
 
         Set Field_Option Field liga.Pais DD_REQUIRED to True
