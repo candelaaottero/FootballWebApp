@@ -13,7 +13,7 @@ Class cequipoDataDictionary is a DataDictionary
         
         Set Key_Field_State Field equipo.ID to True
         Set Field_Option Field equipo.ID DD_REQUIRED to True
-        Set Field_Option Field equipo.Nombre DD_DISPLAYONLY to True
+        Set Field_Option Field equipo.Nombre DD_DISPLAYONLY to False
         Set Field_Option Field equipo.Nombre DD_REQUIRED to True
         Set Field_Option Field equipo.LigaID DD_REQUIRED to True
 
@@ -29,4 +29,36 @@ Class cequipoDataDictionary is a DataDictionary
 
     End_Procedure
 
+    Procedure Backout
+        Forward Send Backout
+        
+        Integer iNumEquipos
+        
+        Move liga.Equipos to iNumEquipos
+        
+        If (iNumEquipos > 0) Begin
+            Decrement iNumEquipos
+            Move iNumEquipos to liga.Equipos
+        End
+        Else Begin
+            Send UserError "ERROR: No hay equipos en esta liga"
+        End
+    End_Procedure
+
+    Procedure Update
+        Forward Send Update
+        
+        Integer iNumEquipos iMaxEquipos
+        
+        Move liga.Equipos to iNumEquipos
+        Move liga.EquiposMax to iMaxEquipos
+        
+        If (iNumEquipos < iMaxEquipos) Begin
+            Increment iNumEquipos
+            Move iNumEquipos to liga.Equipos
+        End
+        Else Begin
+            Send UserError "ERROR: No hay sitio en la liga"
+        End
+    End_Procedure
 End_Class

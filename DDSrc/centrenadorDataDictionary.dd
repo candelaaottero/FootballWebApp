@@ -1,7 +1,12 @@
 ﻿Use DataDict.pkg
+Use Ddvaltbl.pkg
 
 Open entrenador
 Open equipo
+
+Object oNacionalidad_Val is a CodeValidationTable
+    Set Type_Value to "NACIONAL"
+End_Object
 
 Class centrenadorDataDictionary is a DataDictionary
     
@@ -17,28 +22,21 @@ Class centrenadorDataDictionary is a DataDictionary
         Set Field_Option Field entrenador.Apellido DD_REQUIRED to True 
 
         Set Add_Server_File to equipo.File_Number
+        Set ParentNullAllowed equipo.File_Number to True
 
         Set Foreign_Field_Option DD_KEYFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
         Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
 
+        
+        Set Field_Value_Table Field entrenador.Nacionalidad to oNacionalidad_Val
     End_Procedure
     
-    Procedure DespedirEntrenador
-        Handle hoSQL hDbc hStmt
-        Integer iId
-        Get Field_Current_Value Field entrenador.ID to iId
+    Procedure Attach_Main_File
+        Forward Send Attach_Main_File
         
-        Get Create U_cSQLHandleManager to hoSQL
-        Get SQLFileConnect of hoSQL entrenador.File_Number to hDbc
-        Get SQLOpen of hDbc to hStmt
-        Send SQLExecDirect of hStmt ("UPDATE entrenador SET EquipoID = NULL WHERE ID =" * String(iId))
-        Send SQLClose of hStmt
-        Send SQLDisconnect of hDbc
-        Send Destroy of hoSQL
-        
-        Send Refind_Records
+        If (entrenador.EquipoID = 0) ;
+            Set_Attribute DF_FIELD_IS_NULL of entrenador.File_Number (RefTable(entrenador.EquipoID)) to True
     End_Procedure
-
 End_Class

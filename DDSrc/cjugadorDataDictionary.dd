@@ -1,8 +1,13 @@
 ﻿Use DataDict.pkg
+Use Ddvaltbl.pkg
 
 Open jugador
 Open jugadorposicion
 Open equipo
+
+Object oNacionalidad_Val is a CodeValidationTable
+    Set Type_Value to "NACIONAL"
+End_Object
 
 Class cjugadorDataDictionary is a DataDictionary
     
@@ -28,6 +33,8 @@ Class cjugadorDataDictionary is a DataDictionary
         Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
         Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
+        
+        Set Field_Value_Table Field jugador.Nacionalidad to oNacionalidad_Val
 
     End_Procedure
 
