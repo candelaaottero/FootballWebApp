@@ -12,6 +12,7 @@ Use cWebCombo.pkg
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 Use cjugadorDataDictionary.dd
+Use cjugadorposicionDataDictionary.dd
 Use cWebGroup.pkg
 Use cWebSpacer.pkg
 
@@ -85,6 +86,45 @@ Object oZoomJugador is a cWebView
             Procedure OnClick
                 Send NavigatePath
             End_Procedure
+        End_Object
+
+        Object oWebSpacer2 is a cWebSpacer
+            Set piColumnSpan to 12
+        End_Object
+        
+        Object oListaPosicionJugador is a cWebGroup
+            Set psCaption to "Posición Jugador"
+            Set piColumnCount to 11
+            Set piColumnSpan to 17
+            Set piColumnIndex to 21
+            
+            Object oListaPosiciones is a cWebList
+                Set piColumnIndex to 0
+                Set piColumnSpan to 11
+                Set peLabelPosition to lpTop
+                Set psLabel to "Posiciones"
+                Set pbShowHeader to False 
+                Set Server to ojugadorposicion_DD
+                
+                Object oPosicionJugadorNombre is a cWebColumn
+                    Entry_Item posicion.Nombre
+                    Set psCaption to "posicion.Nombre"
+                    Set pbShowCaption to False
+                End_Object
+            End_Object
+            
+            Object oEditarPosicionBtn is a cWebButton
+                Set psCaption to "Editar posicion"
+                Set psVisible to False
+                Set piColumnIndex to 0
+                Set piColumnSpan to 11
+                
+                WebRegisterPath ntNavigateForward oSelectPosicionJugador
+                
+                Procedure OnClick
+                    Send NavigatePath
+                End_Procedure
+            End_Object
         End_Object
     End_Object 
 
