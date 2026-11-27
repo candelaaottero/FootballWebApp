@@ -17,6 +17,10 @@ Class cjugadorposicionDataDictionary is a DataDictionary
         Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
         Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
+        
+        Set Key_Field_State Field jugadorposicion.ID to True
+        Set Field_Option Field jugadorposicion.JugadorID DD_REQUIRED to True
+        Set Field_Option Field jugadorposicion.PosicionID DD_REQUIRED to True
 
     End_Procedure
 
